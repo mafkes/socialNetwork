@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/zf2-sn.iml" filepath="$PROJECT_DIR$/.idea/zf2-sn.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../socialNetwork/.idea/zf2-sn.iml" filepath="$PROJECT_DIR$/../socialNetwork/.idea/zf2-sn.iml" />
     </modules>
   </component>
 </project>
