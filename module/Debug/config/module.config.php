@@ -33,5 +33,30 @@ return array(
             __DIR__ . '/../view',
         ),
     ),
-
+    'service_manager' => array(
+        'initializers' => array(
+            'Users\Service\Initializer\Db',
+        ),
+        'factories' => array(
+            'timer' => 'Debug\Service\Factory\Timer',
+            'timer_non_float' => 'Debug\Service\Factory\Timer',
+            'crypto' => 'Crypto\Service\Factory',
+        ),
+        'shared' => array(
+            'crypto' => false,
+        ),
+        'abstract_factories' => array(
+            // add here list of resolvable class names
+            'Debug\Service\Factory\TimerAbstractFactory',
+        ),
+        'aliases' => array(
+            'Debug\Timer' => 'timer',
+        ),
+    ),
+    'timer' => array(
+        'times_as_float' => true,
+    ),
+    'timer_non_float' => array(
+        'times_as_float' => false,
+    ),
 );
