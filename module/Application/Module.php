@@ -17,8 +17,28 @@ class Module
     public function onBootstrap(MvcEvent $e)
     {
         $eventManager        = $e->getApplication()->getEventManager();
-        $moduleRouteListener = new ModuleRouteListener();
-        $moduleRouteListener->attach($eventManager);
+        $eventManager->attach(MvcEvent::EVENT_DISPATCH_ERROR, array($this, 'handleError'));
+
+    }
+
+
+    /**
+     *
+     */
+    public function handleError(MvcEvent $event)
+    {
+        $controller = $event->getController();
+        $error      = $event->getParam('error');
+        $exception  = $event->getParam('exception');
+        $message    = sprintf('Error dispatching controller "%s". Error was: "%s"', $controller, $error);
+
+        if($exception instanceof \Exception){
+            $message .= ', Exception('
+                . $exception->getMessage().'): '
+                . $exception->getTraceAsString();
+        }
+
+        error_log($message);
     }
 
     public function getConfig()
